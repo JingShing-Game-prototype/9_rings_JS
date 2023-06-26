@@ -7,42 +7,43 @@
 </head>
 <body>
     <svg viewBox="0 0 10 10" width="30%">
-        <circle id="outerCircle" cx="5" cy="5" r="4" stroke-width="1" stroke="black" fill="white"/>
-        <circle id="middleCircle" cx="5" cy="5" r="2" stroke-width="1" stroke="black" fill="white"/>
-        <circle id="innerCircle" cx="5" cy="5" r="1" fill="black"/>
+        <circle id="ring_0" cx="5" cy="5" r="4" stroke-width="1" stroke="black" fill="white"/>
+        <circle id="ring_1" cx="5" cy="5" r="2" stroke-width="1" stroke="black" fill="white"/>
+        <circle id="ring_2" cx="5" cy="5" r="1" fill="black"/>
     </svg>    
 </body>
 <script>
-    var outerCircle = document.getElementById("outerCircle");
-    var middleCircle = document.getElementById("middleCircle");
-    var innerCircle = document.getElementById("innerCircle");
+    let ring_code = "000";
+    let nowRing;
     let getColor;
-    outerCircle.addEventListener("click", function() {
-        getColor = outerCircle.getAttribute("stroke");
-        if(getColor=="black"){
-            outerCircle.setAttribute("stroke", "red");
+    let codeLength = ring_code.length;
+    const colorsName = ["black", "red", "blue"]
+    setEventsToRings();
+    detect_ring_code();
+    document.addEventListener("change", detect_ring_code);
+    function setEventsToRings(){
+        for(let i = 0;i < codeLength; i++){
+            nowRing = document.getElementById("ring_"+i);
+            nowRing.addEventListener("click", function(){
+                let code_digit = parseInt(ring_code[i]);
+                code_digit = (code_digit + 1) % codeLength;
+                ring_code = replaceCharAtIndex(ring_code, i, code_digit.toString());
+                detect_ring_code();
+                console.log(ring_code);
+            });
         }
-        else{
-            outerCircle.setAttribute("stroke", "black");
+    }
+    function replaceCharAtIndex(str, index, replacement) {
+    return str.substring(0, index) + replacement + str.substring(index + 1);
+    }
+    function detect_ring_code(){
+        let code_2 = ring_code;
+        for(let i = 0;i < codeLength; i++){
+            nowRing = document.getElementById("ring_"+i);
+            let code_digit = code_2[i];
+            if(i+1==codeLength)nowRing.setAttribute("fill", colorsName[parseInt(code_digit)]);
+            else nowRing.setAttribute("stroke", colorsName[parseInt(code_digit)]);
         }
-    });
-    middleCircle.addEventListener("click", function() {
-        getColor = middleCircle.getAttribute("stroke");
-        if(getColor=="black"){
-            middleCircle.setAttribute("stroke", "red");
-        }
-        else{
-            middleCircle.setAttribute("stroke", "black");
-        }
-    });
-    innerCircle.addEventListener("click", function() {
-        getColor = innerCircle.getAttribute("fill");
-        if(getColor=="black"){
-            innerCircle.setAttribute("fill", "red");
-        }
-        else{
-            innerCircle.setAttribute("fill", "black");
-        }
-    });
+    }
 </script>
 </html>
