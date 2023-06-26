@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>single ring test</title>
+</head>
+<body>
+    <svg viewBox="0 0 10 10" width="30%">
+        <circle id="outerCircle" cx="5" cy="5" r="4" stroke-width="1" stroke="black" fill="white"/>
+        <circle id="middleCircle" cx="5" cy="5" r="2" stroke-width="1" stroke="black" fill="white"/>
+        <circle id="innerCircle" cx="5" cy="5" r="1" fill="black"/>
+    </svg>    
+</body>
+<script>
+    var outerCircle = document.getElementById("outerCircle");
+    var middleCircle = document.getElementById("middleCircle");
+    var innerCircle = document.getElementById("innerCircle");
+    let getColor;
+    outerCircle.addEventListener("click", function() {
+        getColor = outerCircle.getAttribute("stroke");
+        if(getColor=="black"){
+            outerCircle.setAttribute("stroke", "red");
+        }
+        else{
+            outerCircle.setAttribute("stroke", "black");
+        }
+    });
+    middleCircle.addEventListener("click", function() {
+        getColor = middleCircle.getAttribute("stroke");
+        if(getColor=="black"){
+            middleCircle.setAttribute("stroke", "red");
+        }
+        else{
+            middleCircle.setAttribute("stroke", "black");
+        }
+    });
+    innerCircle.addEventListener("click", function() {
+        getColor = innerCircle.getAttribute("fill");
+        if(getColor=="black"){
+            innerCircle.setAttribute("fill", "red");
+        }
+        else{
+            innerCircle.setAttribute("fill", "black");
+        }
+    });
+</script>
+</html>
