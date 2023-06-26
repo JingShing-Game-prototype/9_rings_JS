@@ -19,4 +19,6 @@ There is also another winning condition where the elements in the first, second,
 
 > the second problem I met is that it should only run 9 times but it run 10.
 
+# Please someone help me
+
 # What the faaaa, JS?
