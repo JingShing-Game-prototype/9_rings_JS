@@ -12,9 +12,10 @@ createBlocks(x, y);
 setEventsToRings(x, y);
 document.addEventListener("click", function(){
     winPlayer = checkWinner();
-    if(winPlayer!="0"){
-        console.log(winPlayer);
-    }
+    console.log(`winner: ${winPlayer}`);
+    // if(winPlayer!="0"){
+    //     console.log(winPlayer);
+    // }
 });
 
 function createBlocks(x, y){
@@ -104,23 +105,14 @@ function checkWinner() {
     let current;
     console.log(ring_code);
 
-    // for (let i = 0; i < x; i++) {
-    //     for (let j = 0; j < y; j++) {
-    //         current = ring_code[i][j];
-    //         console.log(`i: ${i}`);
-    //         console.log(`j: ${j}`);
-    //         console.log(`current: ${current}`);
-    //     }
-    // }
-
     for (let i = 0; i < x; i++) {
         for (let j = 0; j < y; j++) {
             current = ring_code[i][j];
             console.log(`i: ${i}`);
             console.log(`j: ${j}`);
             console.log(`current: ${current}`);
-            if (current == "111") return 1;
-            else if (current == "222") return 2;
+            if (current === "111") return 1;
+            else if (current === "222") return 2;
 
             for (let k = 0; k < codeLength; k++) {
                 let current_digit = ring_code[i][j][k];
@@ -157,4 +149,3 @@ function checkWinner() {
 
     return 0;
 }
-
