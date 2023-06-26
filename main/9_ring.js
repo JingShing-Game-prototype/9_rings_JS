@@ -103,49 +103,52 @@ function detect_ring_code(x, y){
 function checkWinner() {
     let current;
     console.log(ring_code);
-    // for (let i = 0; i < 3; i++) {
-    //     for (let j = 0; j < 3; j++) {
+
+    // for (let i = 0; i < x; i++) {
+    //     for (let j = 0; j < y; j++) {
     //         current = ring_code[i][j];
-    //         console.log(`current: ${current}`);
     //         console.log(`i: ${i}`);
     //         console.log(`j: ${j}`);
+    //         console.log(`current: ${current}`);
     //     }
     // }
 
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
+    for (let i = 0; i < x; i++) {
+        for (let j = 0; j < y; j++) {
             current = ring_code[i][j];
-            console.log(current);
-            if (current=="111")return 1;
-            else if(current=="222")return 2;
+            console.log(`i: ${i}`);
+            console.log(`j: ${j}`);
+            console.log(`current: ${current}`);
+            if (current == "111") return 1;
+            else if (current == "222") return 2;
 
-            for(let k=0; k<codeLength; k++){
-                let current_digit =  ring_code[i][j][k];
+            for (let k = 0; k < codeLength; k++) {
+                let current_digit = ring_code[i][j][k];
                 if (j <= y - 3) {
                     const horizontal = [ring_code[i][j][k], ring_code[i][j + 1][k], ring_code[i][j + 2][k]];
                     if (horizontal.every((value) => value[k] === current_digit)) {
-                    return parseInt(current_digit);
+                        return parseInt(current_digit);
                     }
                 }
 
                 if (i <= x - 3) {
                     const vertical = [ring_code[i][j][k], ring_code[i + 1][j][k], ring_code[i + 2][j][k]];
                     if (vertical.every((value) => value === current_digit)) {
-                    return parseInt(current_digit);
+                        return parseInt(current_digit);
                     }
                 }
 
                 if (i <= x - 3 && j <= y - 3) {
                     const diagonal1 = [ring_code[i][j][k], ring_code[i + 1][j + 1][k], ring_code[i + 2][j + 2][k]];
                     if (diagonal1.every((value) => value === current_digit)) {
-                    return parseInt(current_digit);
+                        return parseInt(current_digit);
                     }
                 }
 
                 if (i >= 2 && j <= y - 3) {
                     const diagonal2 = [ring_code[i][j][k], ring_code[i - 1][j + 1][k], ring_code[i - 2][j + 2][k]];
                     if (diagonal2.every((value) => value === current_digit)) {
-                    return parseInt(current_digit);
+                        return parseInt(current_digit);
                     }
                 }
             }
@@ -154,3 +157,4 @@ function checkWinner() {
 
     return 0;
 }
+
